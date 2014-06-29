@@ -1,0 +1,32 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "precise64"
+  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+
+  # elasticsearch HTTP endpoint
+  config.vm.network :forwarded_port, guest: 9200, host: 9200
+  # nginx HTTP endpoint
+  config.vm.network :forwarded_port, guest: 80, host: 9080
+
+  config.vm.provision :file do |file|
+    file.source      = 'templates/nginx.conf'
+    file.destination = '/home/vagrant/fabric/templates/nginx.conf'
+  end
+
+config.vm.provision :file do |file|
+    file.source      = 'templates/config.js'
+    file.destination = '/home/vagrant/fabric/templates/config.js'
+  end
+
+  config.vm.provision :fabric do |fabric|
+      fabric.fabfile_path = "./fabfile.py"
+      fabric.tasks = ["provision"]
+    end
+
+  config.vm.provider "virtualbox" do |v|
+      v.customize ["modifyvm", :id, "--cpus", "2"]
+      v.customize ["modifyvm", :id, "--memory", "1024"]
+    end
+end
