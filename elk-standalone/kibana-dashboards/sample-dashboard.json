@@ -320,16 +320,7 @@
             "query": "*",
             "pinned": true,
             "history": [
-                "*NullPointerException",
-                "",
-                "\"Pages+and+Spaces\"",
-                "Pages+and+Spaces",
-                "Pages and Spaces",
-                "Pages and Spacec",
-                "*Exception",
-                "NullPointerException*",
-                "NullPointerException",
-                "message:NullPointerException"
+                "*NullPointerException"
             ],
             "remember": 10,
             "enable": true
