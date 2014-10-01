@@ -9,7 +9,7 @@ def provision():
     mongodb()
 
 
-def mongodb(version='2.6.1'):
+def mongodb(version='2.6.4'):
     deb.key('7F0CEB10', keyserver='keyserver.ubuntu.com')
     deb.source('mongodb', 'http://downloads-distro.mongodb.org/repo/ubuntu-upstart', 'dist', '10gen')
     deb.package('mongodb-org', version=version, update=False)
